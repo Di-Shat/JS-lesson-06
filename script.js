@@ -35,14 +35,19 @@ for(var tag of tags){
 Результат должен быть аналогичен тому, что получится в предыдущем упражнении
 Однако исходный массив tags должен быть массивом объектов, каждый из которых содержит не только имя тега элемента, но и его атрибуты, а так же хотя бы один обработчик события
 Таким образом, массив classes нам уже не нужен, но кроме стилизации элементов нужно еще добавить их контент, используя как атрибуты тегов, так и свойства элементов DOM*/
+let someFunc = (classNameOfEl) => {
+console.log(`Clicked on ${classNameOfEl}`)
+}
+
 var tags = [
     {
 name:'header',
 className:'header',
 width: '150px',
 innerText:'Hellow header!',
-click: function(event){
-console.log('clicked on header')
+click: someFunc('header') 
+ function(event){
+ console.log('clicked on header')
 }
     },
     {
@@ -50,7 +55,7 @@ name:'section',
 className: 'section',
 width: '150px',
 innerText:'Hellow section!',
-click: function(){
+click: function(event){
 console.log('clicked on section')
 }
     },
@@ -59,7 +64,7 @@ name:'main',
 className: 'main',
 width: '150px',
 innerText:'Hellow main!',
-click: function(){
+click: function(event){
 console.log('clicked on main')
 
 }
@@ -69,7 +74,7 @@ name:'aside',
 className: 'aside',
 width: '150px',
 innerText:'Hellow aside!',
-click: function(){
+click: function(event){
 console.log('clicked on aside')
 }
     },
@@ -78,7 +83,7 @@ name:'article',
 className: 'article',
 width: '150px',
 innerText:'Hellow article!',
-click: function(){
+click: function(event){
 console.log('clicked on article')
 }
     },
@@ -87,7 +92,7 @@ name:'footer',
 className: 'footer',
 width: '150px',
 innerText:'Hellow footer!',
-click: function(){
+click: function(event){
 console.log('clicked on footer')
 }
     },
