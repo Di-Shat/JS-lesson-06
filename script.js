@@ -17,9 +17,25 @@ style.textContent = `
   width: 100px;
   height: 100px;
   padding: 50px;
-  background-color:#00ff00;
-  color:black;
-};
+}
+.header {
+    background-color:#00ff00;
+}
+.section {
+    background-color:#ffff00;
+}
+.main {
+    background-color:#ff00ff;
+}
+.aside {
+    background-color:#00ffff;
+}
+.article {
+    background-color:#0000ff;
+}
+.footer {
+    background-color:#00ff00;
+}
 `
 for(var tag of tags){
   var elm = document.createElement(tag);
@@ -35,65 +51,47 @@ for(var tag of tags){
 Результат должен быть аналогичен тому, что получится в предыдущем упражнении
 Однако исходный массив tags должен быть массивом объектов, каждый из которых содержит не только имя тега элемента, но и его атрибуты, а так же хотя бы один обработчик события
 Таким образом, массив classes нам уже не нужен, но кроме стилизации элементов нужно еще добавить их контент, используя как атрибуты тегов, так и свойства элементов DOM*/
-let someFunc = (classNameOfEl) => {
-console.log(`Clicked on ${classNameOfEl}`)
-}
-
 var tags = [
     {
 name:'header',
+attrs:{
 className:'header',
-width: '150px',
-innerText:'Hellow header!',
-click: someFunc('header') 
- function(event){
- console.log('clicked on header')
+innerText:'Hello header!'
 }
     },
     {
 name:'section',
+attrs:{
 className: 'section',
-width: '150px',
-innerText:'Hellow section!',
-click: function(event){
-console.log('clicked on section')
+innerText:'Hello section!'
 }
     },
     {
 name:'main',
+attrs:{
 className: 'main',
-width: '150px',
-innerText:'Hellow main!',
-click: function(event){
-console.log('clicked on main')
-
+innerText:'Hello main!'
 }
     },
     {
 name:'aside',
+attrs:{
 className: 'aside',
-width: '150px',
-innerText:'Hellow aside!',
-click: function(event){
-console.log('clicked on aside')
+innerText:'Hello aside!'
 }
     },
     {
 name:'article',
+attrs:{
 className: 'article',
-width: '150px',
-innerText:'Hellow article!',
-click: function(event){
-console.log('clicked on article')
+innerText:'Hello article!'
 }
     },
     {
 name:'footer',
+attrs:{
 className: 'footer',
-width: '150px',
-innerText:'Hellow footer!',
-click: function(event){
-console.log('clicked on footer')
+innerText:'Hello footer!'
 }
     },
 ]
@@ -101,24 +99,48 @@ console.log('clicked on footer')
 var style = document.head.appendChild(
 document.createElement('style')
 )
+
 style.textContent = `
  .header,.section,.main,.aside,.article,.footer{
   width: 100px;
   height: 100px;
   padding: 50px;
-  background-color:#00ff00;
-  color:black;
+}
+.header {
+    background-color:#00ff00;
+}
+.section {
+    background-color:#ffff00;
+}
+.main {
+    background-color:#ff00ff;
+}
+.aside {
+    background-color:#00ffff;
+}
+.article {
+    background-color:#0000ff;
+}
+.footer {
+    background-color:#00ff00;
 }
 `
+function clickHandler(event){
+    function randomColor(){
+        return Math.round(Math.random() * 255)
+    }
+    event.target.style.color = `rgb(${randomColor()},${randomColor()},${randomColor()})`
+}
 for(var tag of tags){
-  var elm = document.createElement(tag.name);
-  elm.innerText=tag.innerText;
-  var classElem = tag.className;
-  elm.classList.add(classElem);
-  elm.setAttribute('width',tag.width);
-  elm.onclick = tag.click;
-  document.body.appendChild(elm);
-  }
+    var elem = document.body.appendChild(
+        document.createElement(`${tag.name}`)
+    )
+    for(var attr in tag.attrs)
+        elem[attr] = tag.attrs[attr]
+    elem.onclick = function (event){
+        clickHandler(event)
+    }
+}
 //////////////////////////////////////////////////////////////////////////////
 /*Task-03
 Дополнительно ( 5 баллов )
